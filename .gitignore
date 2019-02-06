@@ -10,3 +10,5 @@ software/src/brickletlib
 software/src/bricklib
 software/src/bricklib2
 hardware/kicad-libraries
+hardware/*.net
+hardware/*.kicad_pcb-bak
