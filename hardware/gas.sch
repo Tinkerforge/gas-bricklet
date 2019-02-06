@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:gas-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -766,7 +767,7 @@ U 1 1 5C5C7471
 P 9250 4150
 F 0 "P4" H 9300 3600 50  0000 C CNN
 F 1 "Gas Sensor" H 9550 4150 50  0000 C CNN
-F 2 "kicad-libraries:PIN_ARRAY-8X1" H 9250 4150 50  0001 C CNN
+F 2 "kicad-libraries:pin_array_8x1_smd" H 9250 4150 50  0001 C CNN
 F 3 "" H 9250 4150 50  0000 C CNN
 	1    9250 4150
 	1    0    0    1   
