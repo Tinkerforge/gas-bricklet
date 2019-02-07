@@ -1,4 +1,4 @@
-update=Mi 06 Feb 2019 14:16:19 CET
+update=Do 07 Feb 2019 10:46:26 CET
 version=1
 last_client=kicad
 [cvpcb]
@@ -23,12 +23,15 @@ NetFmtName=Pcbnew
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=39
+[eeschema]
+version=1
+LibDir=
 [pcbnew]
 version=1
 PageLayoutDescrFile=
 LastNetListRead=temperature.net
-PadDrill=0
-PadDrillOvalY=0
+PadDrill=0.6
+PadDrillOvalY=0.6
 PadSizeH=3.5
 PadSizeV=3.5
 PcbTextSizeV=2.032
@@ -42,6 +45,3 @@ SolderMaskMinWidth=0
 DrawSegmentWidth=0.2
 BoardOutlineThickness=0.381
 ModuleOutlineThickness=0.01
-[eeschema]
-version=1
-LibDir=
