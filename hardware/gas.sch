@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:gas-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -377,12 +378,12 @@ Wire Wire Line
 $Comp
 L tinkerforge:CONN_01X01 P2
 U 1 1 5A5511B7
-P 2950 6200
-F 0 "P2" H 2950 6300 50  0000 C CNN
-F 1 "DEBUG" V 3050 6200 50  0000 C CNN
-F 2 "kicad-libraries:DEBUG_PAD" H 2950 6200 50  0001 C CNN
-F 3 "" H 2950 6200 50  0000 C CNN
-	1    2950 6200
+P 2650 6100
+F 0 "P2" H 2650 6200 50  0000 C CNN
+F 1 "DEBUG" V 2750 6100 50  0000 C CNN
+F 2 "kicad-libraries:DEBUG_PAD" H 2650 6100 50  0001 C CNN
+F 3 "" H 2650 6100 50  0000 C CNN
+	1    2650 6100
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -557,8 +558,6 @@ Wire Wire Line
 	3150 1150 3450 1150
 Connection ~ 3150 1150
 Wire Wire Line
-	3150 6200 3450 6200
-Wire Wire Line
 	3100 3050 3450 3050
 Wire Wire Line
 	3100 3150 3450 3150
@@ -570,9 +569,10 @@ NoConn ~ 3450 3450
 NoConn ~ 3450 4850
 NoConn ~ 3450 4950
 NoConn ~ 3450 5050
-NoConn ~ 3450 6100
 NoConn ~ 3450 6300
 NoConn ~ 3450 6500
 NoConn ~ 3450 6600
 NoConn ~ 3450 6700
+Wire Wire Line
+	2850 6100 3450 6100
 $EndSCHEMATC
