@@ -445,17 +445,6 @@ F 3 "" H 7750 4450 39  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L tinkerforge:AP2331 U7
-U 1 1 5CCCD011
-P 7750 2850
-F 0 "U7" H 7750 3115 50  0000 C CNN
-F 1 "ISL60002" H 7750 3024 50  0000 C CNN
-F 2 "kicad-libraries:SOT23-3" H 7750 2850 50  0001 C CNN
-F 3 "" H 7750 2850 50  0001 C CNN
-	1    7750 2850
-	1    0    0    -1  
-$EndComp
-$Comp
 L tinkerforge:HDC1080 U6
 U 1 1 5CCCD1D4
 P 7750 1350
@@ -683,20 +672,14 @@ $EndComp
 $Comp
 L tinkerforge:VCC #PWR011
 U 1 1 5CCF1C7D
-P 7150 2700
-F 0 "#PWR011" H 7150 2800 40  0001 C CNN
-F 1 "VCC" H 7159 2856 40  0000 C CNN
-F 2 "" H 7150 2700 60  0000 C CNN
-F 3 "" H 7150 2700 60  0000 C CNN
-	1    7150 2700
+P 6950 2550
+F 0 "#PWR011" H 6950 2650 40  0001 C CNN
+F 1 "VCC" H 6959 2706 40  0000 C CNN
+F 2 "" H 6950 2550 60  0000 C CNN
+F 3 "" H 6950 2550 60  0000 C CNN
+	1    6950 2550
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7150 2700 7150 2850
-Wire Wire Line
-	7150 2850 7300 2850
-Wire Wire Line
-	8050 2850 8250 2850
 Wire Wire Line
 	8600 4450 8250 4450
 Text GLabel 7100 1250 0    39   Input ~ 0
@@ -761,9 +744,6 @@ F 3 "" H 8250 2950 60  0000 C CNN
 	1    8250 2950
 	1    0    0    -1  
 $EndComp
-Connection ~ 8250 2850
-Wire Wire Line
-	8250 2850 8600 2850
 Wire Wire Line
 	8250 3050 8250 3200
 Wire Wire Line
@@ -772,17 +752,14 @@ Connection ~ 7750 3200
 $Comp
 L tinkerforge:Rs R2
 U 1 1 5CD03F9C
-P 8950 2850
-F 0 "R2" V 8804 2850 31  0000 C CNN
-F 1 "1k" V 8866 2850 31  0000 C CNN
-F 2 "kicad-libraries:R0603F" H 8950 2850 60  0001 C CNN
-F 3 "" H 8950 2850 60  0000 C CNN
-	1    8950 2850
+P 8950 2800
+F 0 "R2" V 8804 2800 31  0000 C CNN
+F 1 "1k" V 8866 2800 31  0000 C CNN
+F 2 "kicad-libraries:R0603F" H 8950 2800 60  0001 C CNN
+F 3 "" H 8950 2800 60  0000 C CNN
+	1    8950 2800
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	8600 2850 8850 2850
-Connection ~ 8600 2850
 $Comp
 L tinkerforge:CPs C8
 U 1 1 5CD06C5D
@@ -794,8 +771,6 @@ F 3 "" H 9200 2950 60  0000 C CNN
 	1    9200 2950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9050 2850 9200 2850
 $Comp
 L tinkerforge:GND #PWR018
 U 1 1 5CD09A0D
@@ -972,8 +947,6 @@ F 3 "" H 5600 4450 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	8600 2850 8600 3450
-Wire Wire Line
 	8600 3450 6150 3450
 Wire Wire Line
 	6150 3450 6150 4250
@@ -1119,21 +1092,14 @@ Connection ~ 6050 4650
 $Comp
 L tinkerforge:Cs C11
 U 1 1 5CFA4E68
-P 7300 2950
-F 0 "C11" H 7400 2981 31  0000 L CNN
-F 1 "100nF" H 7400 2919 31  0000 L CNN
-F 2 "kicad-libraries:C0603F" H 7300 2950 60  0001 C CNN
-F 3 "" H 7300 2950 60  0000 C CNN
-	1    7300 2950
+P 7150 2950
+F 0 "C11" H 7250 2981 31  0000 L CNN
+F 1 "100nF" H 7250 2919 31  0000 L CNN
+F 2 "kicad-libraries:C0603F" H 7150 2950 60  0001 C CNN
+F 3 "" H 7150 2950 60  0000 C CNN
+	1    7150 2950
 	1    0    0    -1  
 $EndComp
-Connection ~ 7300 2850
-Wire Wire Line
-	7300 2850 7450 2850
-Wire Wire Line
-	7300 3050 7300 3200
-Wire Wire Line
-	7300 3200 7750 3200
 $Comp
 L tinkerforge:Cs C12
 U 1 1 5CFAD9A3
@@ -1184,4 +1150,44 @@ Wire Wire Line
 Connection ~ 1200 3050
 Wire Wire Line
 	1200 3050 1150 3050
+$Comp
+L tinkerforge:ISL60002 U7
+U 1 1 5D55EAF4
+P 7750 2900
+F 0 "U7" H 7750 3241 39  0000 C CNN
+F 1 "ISL60002" H 7750 3166 39  0000 C CNN
+F 2 "kicad-libraries:SOT23-3" H 7750 2900 39  0001 C CNN
+F 3 "" H 7750 2900 39  0001 C CNN
+	1    7750 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 2550 6950 2800
+Wire Wire Line
+	6950 2800 7150 2800
+Wire Wire Line
+	7150 2800 7150 2850
+Connection ~ 7150 2800
+Wire Wire Line
+	7150 2800 7400 2800
+Wire Wire Line
+	7150 3050 7150 3200
+Wire Wire Line
+	7150 3200 7750 3200
+Wire Wire Line
+	8100 2800 8250 2800
+Wire Wire Line
+	9050 2800 9200 2800
+Wire Wire Line
+	9200 2800 9200 2850
+Wire Wire Line
+	8600 2800 8600 3450
+Connection ~ 8600 2800
+Wire Wire Line
+	8600 2800 8850 2800
+Wire Wire Line
+	8250 2850 8250 2800
+Connection ~ 8250 2800
+Wire Wire Line
+	8250 2800 8600 2800
 $EndSCHEMATC
