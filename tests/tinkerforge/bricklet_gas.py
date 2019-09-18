@@ -19,7 +19,7 @@ except ValueError:
     from ip_connection import Device, IPConnection, Error, create_char, create_char_list, create_string, create_chunk_data
 
 GetValues = namedtuple('Values', ['gas_concentration', 'temperature', 'humidity', 'gas_type'])
-GetCalibration = namedtuple('Calibration', ['adc_count_zero', 'temperature_zero', 'humidity_zero', 'compensation_zero_low', 'compensation_zero_high', 'ppm_span', 'adc_count_span', 'temperature_span', 'humidity_span', 'compensation_span_low', 'compensation_span_high', 'gas_type', 'sensitivity'])
+GetCalibration = namedtuple('Calibration', ['adc_count_zero', 'temperature_zero', 'humidity_zero', 'compensation_zero_low', 'compensation_zero_high', 'ppm_span', 'adc_count_span', 'temperature_span', 'humidity_span', 'compensation_span_low', 'compensation_span_high', 'temperature_offset', 'humidity_offset', 'gas_type', 'sensitivity'])
 GetValuesCallbackConfiguration = namedtuple('ValuesCallbackConfiguration', ['period', 'value_has_to_change'])
 GetSPITFPErrorCount = namedtuple('SPITFPErrorCount', ['error_count_ack_checksum', 'error_count_message_checksum', 'error_count_frame', 'error_count_overflow'])
 GetIdentity = namedtuple('Identity', ['uid', 'connected_uid', 'position', 'hardware_version', 'firmware_version', 'device_identifier'])
@@ -128,7 +128,7 @@ class BrickletGas(Device):
         """
         return self.ipcon.send_request(self, BrickletGas.FUNCTION_GET_ADC_COUNT, (), '', 'I')
 
-    def set_calibration(self, adc_count_zero, temperature_zero, humidity_zero, compensation_zero_low, compensation_zero_high, ppm_span, adc_count_span, temperature_span, humidity_span, compensation_span_low, compensation_span_high, gas_type, sensitivity):
+    def set_calibration(self, adc_count_zero, temperature_zero, humidity_zero, compensation_zero_low, compensation_zero_high, ppm_span, adc_count_span, temperature_span, humidity_span, compensation_span_low, compensation_span_high, temperature_offset, humidity_offset, gas_type, sensitivity):
         """
 
         """
@@ -143,16 +143,18 @@ class BrickletGas(Device):
         humidity_span = int(humidity_span)
         compensation_span_low = int(compensation_span_low)
         compensation_span_high = int(compensation_span_high)
+        temperature_offset = int(temperature_offset)
+        humidity_offset = int(humidity_offset)
         gas_type = int(gas_type)
         sensitivity = int(sensitivity)
 
-        self.ipcon.send_request(self, BrickletGas.FUNCTION_SET_CALIBRATION, (adc_count_zero, temperature_zero, humidity_zero, compensation_zero_low, compensation_zero_high, ppm_span, adc_count_span, temperature_span, humidity_span, compensation_span_low, compensation_span_high, gas_type, sensitivity), 'I h h i i I I h h i i B i', '')
+        self.ipcon.send_request(self, BrickletGas.FUNCTION_SET_CALIBRATION, (adc_count_zero, temperature_zero, humidity_zero, compensation_zero_low, compensation_zero_high, ppm_span, adc_count_span, temperature_span, humidity_span, compensation_span_low, compensation_span_high, temperature_offset, humidity_offset, gas_type, sensitivity), 'I h h i i I I h h i i h h B i', '')
 
     def get_calibration(self):
         """
 
         """
-        return GetCalibration(*self.ipcon.send_request(self, BrickletGas.FUNCTION_GET_CALIBRATION, (), '', 'I h h i i I I h h i i B i'))
+        return GetCalibration(*self.ipcon.send_request(self, BrickletGas.FUNCTION_GET_CALIBRATION, (), '', 'I h h i i I I h h i i h h B i'))
 
     def set_values_callback_configuration(self, period, value_has_to_change):
         """

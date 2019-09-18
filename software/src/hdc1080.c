@@ -40,8 +40,10 @@ void hdc1080_task_tick(void) {
 		coop_task_sleep_ms(HDC1080_CONVERSION_TIME);
 		gas_task_read_direct(HDC1080_I2C_ADDRESS, 4, data, false);
 
-		gas.temperature = ((int32_t)(data[1] | (data[0] << 8)))*16500/(1 << 16) - 4000;
-		gas.humidity    = ((int32_t)(data[3] | (data[2] << 8)))*10000/(1 << 16);
+		gas.temperature  = ((int32_t)(data[1] | (data[0] << 8)))*16500/(1 << 16) - 4000;
+		gas.temperature -= gas.temperature_offset;
+		gas.humidity     = ((int32_t)(data[3] | (data[2] << 8)))*10000/(1 << 16);
+		gas.humidity    -= gas.humidity_offset;
 		logd("HDC1080: Temperature %d, Humidity %d\n\r", gas.temperature, gas.humidity);
 
 		last_time = system_timer_get_ms();

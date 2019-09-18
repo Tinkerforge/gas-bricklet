@@ -73,6 +73,8 @@ BootloaderHandleMessageResponse set_calibration(const SetCalibration *data) {
 	gas.calibration_humidity_span          = data->humidity_span;
 	gas.calibration_compensation_span_low  = data->compensation_span_low;
 	gas.calibration_compensation_span_high = data->compensation_span_high;
+	gas.calibration_temperature_offset     = data->temperature_offset;
+	gas.calibration_humidity_offset        = data->humidity_offset;
 	gas.calibration_gas_type               = data->gas_type;
 	gas.calibration_sensitivity            = data->sensitivity;
 
@@ -94,6 +96,8 @@ BootloaderHandleMessageResponse get_calibration(const GetCalibration *data, GetC
 	response->humidity_span          = gas.calibration_humidity_span;
 	response->compensation_span_low  = gas.calibration_compensation_span_low;
 	response->compensation_span_high = gas.calibration_compensation_span_high;
+	response->temperature_offset     = gas.calibration_temperature_offset;
+	response->humidity_offset        = gas.calibration_humidity_offset;
 	response->gas_type               = gas.calibration_gas_type;
 	response->sensitivity            = gas.calibration_sensitivity;
 

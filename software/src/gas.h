@@ -25,26 +25,30 @@
 #include "bricklib2/hal/i2c_fifo/i2c_fifo.h"
 
 typedef struct {
-    I2CFifo i2c_fifo;
-    bool i2c_mutex;
+	I2CFifo i2c_fifo;
+	bool i2c_mutex;
 
-    uint8_t type;
-    int32_t na_per_ppm;
+	uint8_t type;
+	int32_t na_per_ppm;
 
-    int16_t temperature;
-    uint16_t humidity;
+	int16_t temperature;
+	uint16_t humidity;
 
-    int32_t adc_count;
-    int32_t adc_count_zero;
+	int16_t temperature_offset;
+	int16_t humidity_offset;
 
-    uint8_t tia_gain;
+	int32_t adc_count;
+	int32_t adc_count_zero;
 
-    double ppb;
+	uint8_t tia_gain;
+
+	double ppb;
+
 
 	uint32_t period;
 	bool value_has_to_change;
 
-    uint32_t calibration_adc_count_zero;
+	uint32_t calibration_adc_count_zero;
 	int16_t  calibration_temperature_zero;
 	int16_t  calibration_humidity_zero;
 	int32_t  calibration_compensation_zero_low;
@@ -55,10 +59,12 @@ typedef struct {
 	int16_t  calibration_humidity_span;
 	int32_t  calibration_compensation_span_low;
 	int32_t  calibration_compensation_span_high;
+	int16_t  calibration_temperature_offset;
+	int16_t  calibration_humidity_offset;
 	uint8_t  calibration_gas_type;
 	int32_t  calibration_sensitivity;
 
-    bool     calibration_new;
+	bool     calibration_new;
 } Gas;
 
 extern Gas gas;

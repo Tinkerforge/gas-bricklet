@@ -38,8 +38,8 @@
 
 #define GAS_CALIBRATION_PAGE           1
 #define GAS_CALIBRATION_MAGIC_POS      0
-#define GAS_CALIBRATION_DATA_POS       1 // 1 to 13
-#define GAS_CALIBRATION_CHECKSUM_POS   14
+#define GAS_CALIBRATION_DATA_POS       1 // 1 to 15
+#define GAS_CALIBRATION_CHECKSUM_POS   16
 #define GAS_CALIBRATION_MAGIC          0x12345678
 
 #define GAS_TIME_BETWEEN_INIT_AND_TICK 300 // in ms
@@ -159,15 +159,19 @@ void gas_calibration_read(void) {
 	gas.calibration_humidity_span          = page[GAS_CALIBRATION_DATA_POS +  8];
 	gas.calibration_compensation_span_low  = page[GAS_CALIBRATION_DATA_POS +  9];
 	gas.calibration_compensation_span_high = page[GAS_CALIBRATION_DATA_POS + 10];
-	gas.calibration_gas_type               = page[GAS_CALIBRATION_DATA_POS + 11];
-	gas.calibration_sensitivity            = page[GAS_CALIBRATION_DATA_POS + 12]; 
+	gas.calibration_temperature_offset     = page[GAS_CALIBRATION_DATA_POS + 11];
+	gas.calibration_humidity_offset        = page[GAS_CALIBRATION_DATA_POS + 12];
+	gas.calibration_gas_type               = page[GAS_CALIBRATION_DATA_POS + 13];
+	gas.calibration_sensitivity            = page[GAS_CALIBRATION_DATA_POS + 14]; 
 
 
 	// Use GAS_CALIBRATION_MAGIC here to differentiate between new
 	// versions of calibration. Currently we only use three values here.
-	gas.adc_count_zero = gas.calibration_adc_count_zero;
-	gas.type           = gas.calibration_gas_type;
-	gas.na_per_ppm     = gas.calibration_sensitivity;
+	gas.adc_count_zero     = gas.calibration_adc_count_zero;
+	gas.type               = gas.calibration_gas_type;
+	gas.na_per_ppm         = gas.calibration_sensitivity;
+	gas.temperature_offset = gas.calibration_temperature_offset;
+	gas.humidity_offset    = gas.calibration_temperature_offset;
 }
 
 void gas_calibration_write(void) {
@@ -186,8 +190,10 @@ void gas_calibration_write(void) {
 	page[GAS_CALIBRATION_DATA_POS +  8] = gas.calibration_humidity_span;
 	page[GAS_CALIBRATION_DATA_POS +  9] = gas.calibration_compensation_span_low;
 	page[GAS_CALIBRATION_DATA_POS + 10] = gas.calibration_compensation_span_high;
-	page[GAS_CALIBRATION_DATA_POS + 11] = gas.calibration_gas_type;
-	page[GAS_CALIBRATION_DATA_POS + 12] = gas.calibration_sensitivity;
+	page[GAS_CALIBRATION_DATA_POS + 11] = gas.calibration_temperature_offset;
+	page[GAS_CALIBRATION_DATA_POS + 12] = gas.calibration_humidity_offset;
+	page[GAS_CALIBRATION_DATA_POS + 13] = gas.calibration_gas_type;
+	page[GAS_CALIBRATION_DATA_POS + 14] = gas.calibration_sensitivity;
 
 	uint32_t checksum = 0;
 	for(uint8_t i = 0; i < GAS_CALIBRATION_CHECKSUM_POS; i++) {
