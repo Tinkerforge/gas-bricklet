@@ -18,7 +18,7 @@ if __name__ == "__main__":
     cal = gas.get_calibration()
     print("Calibration Before: " + str(cal))
 
-    gas.set_calibration(107292, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 290)
+    gas.set_calibration(107292, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 290)
 
     cal = gas.get_calibration()
     print("Calibration After: " + str(cal))

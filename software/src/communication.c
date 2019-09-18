@@ -58,10 +58,6 @@ BootloaderHandleMessageResponse get_adc_count(const GetADCCount *data, GetADCCou
 }
 
 BootloaderHandleMessageResponse set_calibration(const SetCalibration *data) {
-	if(data->gas_type > GAS_GAS_TYPE_O3_NO2) {
-		return HANDLE_MESSAGE_RESPONSE_INVALID_PARAMETER;
-	}
-
 	gas.calibration_adc_count_zero         = data->adc_count_zero;
 	gas.calibration_temperature_zero       = data->temperature_zero;
 	gas.calibration_humidity_zero          = data->humidity_zero;
@@ -75,7 +71,6 @@ BootloaderHandleMessageResponse set_calibration(const SetCalibration *data) {
 	gas.calibration_compensation_span_high = data->compensation_span_high;
 	gas.calibration_temperature_offset     = data->temperature_offset;
 	gas.calibration_humidity_offset        = data->humidity_offset;
-	gas.calibration_gas_type               = data->gas_type;
 	gas.calibration_sensitivity            = data->sensitivity;
 
 	gas.calibration_new                    = true;
@@ -98,7 +93,6 @@ BootloaderHandleMessageResponse get_calibration(const GetCalibration *data, GetC
 	response->compensation_span_high = gas.calibration_compensation_span_high;
 	response->temperature_offset     = gas.calibration_temperature_offset;
 	response->humidity_offset        = gas.calibration_humidity_offset;
-	response->gas_type               = gas.calibration_gas_type;
 	response->sensitivity            = gas.calibration_sensitivity;
 
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;

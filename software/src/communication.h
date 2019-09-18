@@ -115,7 +115,6 @@ typedef struct {
 	int32_t compensation_span_high;
 	int16_t temperature_offset;
 	int16_t humidity_offset;
-	uint8_t gas_type;
 	int32_t sensitivity;
 } __attribute__((__packed__)) SetCalibration;
 
@@ -138,7 +137,6 @@ typedef struct {
 	int32_t compensation_span_high;
 	int16_t temperature_offset;
 	int16_t humidity_offset;
-	uint8_t gas_type;
 	int32_t sensitivity;
 } __attribute__((__packed__)) GetCalibration_Response;
 
