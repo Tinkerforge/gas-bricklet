@@ -280,15 +280,30 @@ void gas_init_i2c(void) {
 }
 
 void gas_init(void) {
+	XMC_GPIO_CONFIG_t config_input = {
+		.mode             = XMC_GPIO_MODE_INPUT_PULL_UP,
+		.input_hysteresis = XMC_GPIO_INPUT_HYSTERESIS_STANDARD,
+	};
+
+	XMC_GPIO_Init(GAS_TYPE0_PIN, &config_input);
+	XMC_GPIO_Init(GAS_TYPE1_PIN, &config_input);
+	XMC_GPIO_Init(GAS_TYPE2_PIN, &config_input);
+	XMC_GPIO_Init(GAS_TYPE3_PIN, &config_input);
+
 	memset(&gas, 0, sizeof(Gas));
 
 	gas_calibration_read();
-
-	// TODO: Test-Calibration:
-	// gas.adc_count_zero = 107292;
-	// gas.na_per_ppm     = 290;
-
 	gas_init_i2c();
+
+	gas.type = ((!XMC_GPIO_GetInput(GAS_TYPE0_PIN)) << 0) |
+	           ((!XMC_GPIO_GetInput(GAS_TYPE1_PIN)) << 1) |
+	           ((!XMC_GPIO_GetInput(GAS_TYPE2_PIN)) << 2) |
+	           ((!XMC_GPIO_GetInput(GAS_TYPE3_PIN)) << 3);
+
+	if(gas.type > GAS_GAS_TYPE_O3_NO2) {
+		logw("Unkown gas type: %d\n\r", gas.type);
+		gas.type = GAS_GAS_TYPE_CO;
+	}
 	
 	coop_task_init(&gas_task, gas_task_tick);
 }

@@ -45,4 +45,9 @@
 #define GAS_SDA_FIFO_SIZE        XMC_USIC_CH_FIFO_SIZE_16WORDS
 #define GAS_SDA_FIFO_POINTER     48
 
+#define GAS_TYPE0_PIN            P2_1
+#define GAS_TYPE1_PIN            P2_2
+#define GAS_TYPE2_PIN            P2_6
+#define GAS_TYPE3_PIN            P2_7
+
 #endif
