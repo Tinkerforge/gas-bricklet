@@ -139,12 +139,12 @@ void gas_calibration_read(void) {
 	}
 
 	if(page[GAS_CALIBRATION_MAGIC_POS] != GAS_CALIBRATION_MAGIC) {
-		logd("Calibration Read: Wrong magic %x != %x", page[GAS_CALIBRATION_MAGIC_POS], GAS_CALIBRATION_MAGIC);
+		logd("Calibration Read: Wrong magic %x != %x\n\r", page[GAS_CALIBRATION_MAGIC_POS], GAS_CALIBRATION_MAGIC);
 		return;
 	}
 
 	if(page[GAS_CALIBRATION_CHECKSUM_POS] != checksum) {
-		logd("Calibration Read: Wrong checksum %x != %x", page[GAS_CALIBRATION_CHECKSUM_POS], checksum);
+		logd("Calibration Read: Wrong checksum %x != %x\n\r", page[GAS_CALIBRATION_CHECKSUM_POS], checksum);
 		return;
 	}
 
