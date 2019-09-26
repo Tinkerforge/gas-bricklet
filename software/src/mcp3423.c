@@ -30,6 +30,8 @@
 
 #include "gas.h"
 
+#define MCP3423_MAX_VALUE ((1 << 18)-1)
+
 // 4 SPS
 #define MCP3423_TIME_BETWEEN_MEASUREMENTS 250 // in ms
 
@@ -43,7 +45,7 @@ void mcp3423_task_tick(void) {
 
 		if(!(data[3] & MCP3423_CONF_MSK_RDY1)) {
 			// 18 bits
-			gas.adc_count = (data[2] | (data[1] << 8) | ((data[0] & 0x03) << 16));
+			gas.adc_count = MCP3423_MAX_VALUE - ((data[2] | (data[1] << 8) | ((data[0] & 0x03) << 16)));
 
 			logd("MCP3423: ADC Count %d\n\r", gas.adc_count);
 		}
