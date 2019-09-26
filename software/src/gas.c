@@ -214,8 +214,8 @@ void gas_calculate_ppb(void) {
 	const double span             = temperature < GAS_TEMPERATURE_THRESHOLD_SPAN ? span_low : span_high;
 
 	const double na               = ((double)(gas.adc_count - gas.adc_count_zero))/GAS_ADC_18BIT_MAX * 2.048/rgain * 1E9;
-	const double zero_compensated = na -  (zero *        (temperature - GAS_TEMPERATURE_THRESHOLD_ZERO));
-	const double span_compensated = 1.0 - (span/1000.0 * (temperature - GAS_TEMPERATURE_THRESHOLD_SPAN));
+	const double zero_compensated = na -  (zero *       (temperature - GAS_TEMPERATURE_THRESHOLD_ZERO));
+	const double span_compensated = 1.0 - (span/100.0 * (temperature - GAS_TEMPERATURE_THRESHOLD_SPAN));
 
 	gas.ppb = zero_compensated * span_compensated / ((double)gas.na_per_ppm) * 1E5;
 	logd("Gas: PPT %d, PPB %d, PPM %d\n\r", (int)(gas.ppb*1000), (int)gas.ppb, (int)(gas.ppb/1000.0));
